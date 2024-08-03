@@ -1,0 +1,26 @@
+server.port: 9000
+spring:
+  application.name: reservationms
+  datasource:
+    url: jdbc:mysql://localhost:3306/reservation_db
+    username:
+    password:
+    initialization-mode: always
+  sql.init.mode: always
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    properties.hibernate.format_sql: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["prometheus","health","refresh"]
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
