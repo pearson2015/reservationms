@@ -15,10 +15,10 @@ public class Reservation {
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Long id;
     private String email;
+    private String roomNumber;
     private String roomType;
     private Date reservationDate;
-    private Date checkInDate;
-    private Date checkOutDate;
-    private int numberOfRooms;
-    private double amount;
+    private String reservationStatus;
+    private double price;
+    private String paymentTransactionId;
 }

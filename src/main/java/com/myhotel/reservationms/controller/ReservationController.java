@@ -23,6 +23,12 @@ public class ReservationController {
         return reservationService.getAllReservations();
     }
 
+    @GetMapping("/reservation/id/{id}")
+    public Reservation getReservationById(@PathVariable ("id") Long id) {
+        logger.info("Getting reservation with id: " + id);
+        return reservationService.getReservationById(id);
+    }
+
     @GetMapping("/reservation/roomtype/{roomtype}")
     public List<Reservation> getReservationByRoomType(@PathVariable ("roomtype") String roomType) {
         logger.info("Getting all reservations with roomtype: " + roomType);

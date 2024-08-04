@@ -22,6 +22,11 @@ public class ReservationService {
         return reservationRepository.findAll();
     }
 
+    public Reservation getReservationById(long id) {
+        logger.info("Getting reservation with Id: " + id + " from service layer");
+        return reservationRepository.findById(id).orElse(null);
+    }
+
     public List<Reservation> getReservationByEmail(String email) {
         logger.info("Getting all reservations with email: " + email + " from service layer");
         return reservationRepository.findByEmail(email);
@@ -30,6 +35,7 @@ public class ReservationService {
     public Reservation createReservation(Reservation reservation) {
         logger.info("Creating reservation: " + reservation + " from service layer");
         reservation.setReservationDate(new Date());
+        reservation.setReservationStatus("RESERVED");
         return reservationRepository.save(reservation);
     }
 
