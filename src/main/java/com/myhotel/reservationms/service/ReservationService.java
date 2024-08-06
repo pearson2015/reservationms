@@ -1,5 +1,6 @@
 package com.myhotel.reservationms.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.myhotel.reservationms.entity.Reservation;
 import com.myhotel.reservationms.repository.ReservationRepository;
 import org.slf4j.Logger;
@@ -16,6 +17,11 @@ public class ReservationService {
 
     @Autowired
     private ReservationRepository reservationRepository;
+
+    @Autowired
+    private ProducerService producerService;
+
+    ObjectMapper objectMapper = new ObjectMapper();
 
     public List<Reservation> getAllReservations() {
         logger.info("Getting all reservations from service layer");
@@ -34,13 +40,20 @@ public class ReservationService {
 
     public Reservation createReservation(Reservation reservation) {
         logger.info("Creating reservation: " + reservation + " from service layer");
+
         reservation.setReservationDate(new Date());
         reservation.setReservationStatus("RESERVED");
+
+        producerService.sendMessage(reservation);
+
         return reservationRepository.save(reservation);
     }
 
     public Reservation updateReservation(Reservation reservation) {
         logger.info("Updating reservation: " + reservation + " from service layer");
+
+        producerService.sendMessage(reservation);
+
         return reservationRepository.save(reservation);
     }
 
