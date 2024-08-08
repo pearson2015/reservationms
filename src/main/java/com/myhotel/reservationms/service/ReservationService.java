@@ -15,6 +15,11 @@ public class ReservationService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    private enum ReservationStatus {
+        RESERVED,
+        CANCELLED
+    }
+
     @Autowired
     private ReservationRepository reservationRepository;
 
@@ -42,7 +47,7 @@ public class ReservationService {
         logger.info("Creating reservation: " + reservation + " from service layer");
 
         reservation.setReservationDate(new Date());
-        reservation.setReservationStatus("RESERVED");
+        reservation.setReservationStatus(ReservationStatus.RESERVED.name());
 
         producerService.sendMessage(reservation);
 
