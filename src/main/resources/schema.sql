@@ -6,6 +6,6 @@ CREATE TABLE IF NOT EXISTS reservation (
     reservation_date datetime NOT NULL,
     reservation_status varchar(50) NOT NULL,
     price decimal(10,2) NOT NULL,
-    payment_transaction_id varchar(100) NOT NULL,
+    payment_id varchar(100) NOT NULL,
     PRIMARY KEY (id)
 );

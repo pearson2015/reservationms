@@ -51,4 +51,22 @@ public class ReservationServiceTests {
         assert reservations.size() == 1;
     }
 
+    @Test
+    @DisplayName("Test to get reservation by id")
+    public void testGetReservationById() {
+        when(reservationRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(reservation));
+        Reservation reservation = reservationRepository.findById(1L).get();
+        logger.info("Reservation: {}", reservation);
+        assert reservation.getId() == 1L;
+    }
+
+    @Test
+    @DisplayName("Test to create reservation")
+    public void testCreateReservation() {
+        when(reservationRepository.save(reservation)).thenReturn(reservation);
+        Reservation reservation1 = reservationRepository.save(reservation);
+        logger.info("Reservation: {}", reservation1);
+        assert reservation1.getId() == 1L;
+    }
+
 }

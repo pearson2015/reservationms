@@ -1,3 +1,3 @@
-FROM openjdk:21
-COPY ./target/reservationms-0.0.1-SNAPSHOT.jar /reservationms.jar
+FROM openjdk:17
+COPY ./target/reservationms.jar /reservationms.jar
 CMD ["java", "-jar", "/reservationms.jar"]
