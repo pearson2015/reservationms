@@ -5,6 +5,8 @@ spring:
     name: reservationms
   datasource:
     url: jdbc:mysql://localhost:3306/reservation_db
+    username: reservation_db
+    password: reservation_db
     initialization-mode: always
   sql.init.mode: always
   jpa:
